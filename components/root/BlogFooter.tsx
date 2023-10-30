@@ -6,7 +6,7 @@ type Props = {};
 
 const BlogFooter = (props: Props) => {
   return (
-    <div className="p-5 bg-gray-100 h-fit">
+    <div className="p-5 bg-gray-100 h-fit dark:bg-[#232133]">
       <Subscribe />
     </div>
   );

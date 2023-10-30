@@ -3,7 +3,7 @@ import { Instagram, Linkedin, Twitter } from "lucide-react";
 
 export default function Subscribe() {
   return (
-    <div className="bg-gray-100 p-6 mt-10">
+    <div className="bg-gray-100 p-6 mt-10 dark:bg-[#232133]">
       <div className="max-w-md mx-auto text-center">
         <h2 className="text-2xl font-bold">Subscribe for more content</h2>
 

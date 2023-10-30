@@ -13,7 +13,7 @@ const Footer = async (props: Props) => {
   const categories = await prismadb.category.findMany();
 
   return (
-    <div className="p-5 bg-gray-100 h-fit">
+    <div className="p-5 bg-gray-100 h-fit dark:bg-[#232133]">
       <div className="flex items-center lg:gap-44 gap-32">
         <Link href="/" className="flex items-center">
           <Image alt="logo" src={Logo} className="w-24 h-24" />
