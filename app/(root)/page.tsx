@@ -30,13 +30,13 @@ export default function Home() {
       </div>
       <div className="h-screen" />
       <div className="lg:-mt-32 -mt-80">
-        <p className="text-4xl font-bold text-center md:mb-10 lg:mb-0">
+        <p className="text-3xl font-medium md:mb-10 lg:mb-0 mx-5">
           Recent Blogs
         </p>
         <Recent />
       </div>
-      <div className="mt-32">
-        <p className="text-4xl font-bold text-center">Other News</p>
+      <div className="mt-32 mb-20">
+        <p className="text-3xl font-medium mx-5">Other News</p>
         <RecentNews />
       </div>
       <div>

@@ -15,7 +15,6 @@ import Link from "next/link";
 import { formatDistance } from "date-fns";
 import { Button } from "../ui/button";
 import ContentVieweAllBlogs from "./ContentViewAllBlogs";
-import { Badge } from "lucide-react";
 
 type Props = {
   blogs: Blog[];

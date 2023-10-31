@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface Article {
   title: string;
@@ -49,69 +50,32 @@ const RecentNews = () => {
       };
 
       const response = await axios.request(options);
-      console.log(response.data.articles);
       setNews(response.data.articles);
       setIsLoading(false);
     }
     fetchData();
   }, []);
 
+  const slideLeft = () => {
+    const slider = document.getElementById("slider");
+    if (slider) {
+      slider.scrollLeft -= 300;
+    }
+  };
+
+  const slideRight = () => {
+    const slider = document.getElementById("slider");
+    if (slider) {
+      slider.scrollLeft += 300;
+    }
+  };
   return (
-    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 items-center justify-between">
-      {!isLoading ? (
-        news?.map((article) => {
-          return (
-            <div className="flex justify-center items-cente ">
-              <Card
-                className="lg:m-10 m-5 lg:w-[80%] w-[70%] h-fit"
-                key={article.url}
-              >
-                <CardHeader>
-                  <CardTitle>
-                    <div className="flex flex-row items-center justify-between">
-                      <h1 className="text-2xl my-5 capitalize">
-                        <span className="bg-gradient-to-r from-black pb-1 to-black bg-[length:0px_6px] hover:bg-[length:100%_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-300 ">
-                          {article.title}
-                        </span>
-                      </h1>
-                    </div>
-                  </CardTitle>
-                  <CardDescription>
-                    <p className="text-base font-normal">
-                      Source : <span>{article.publisher.url}</span>
-                    </p>
-                  </CardDescription>
-                </CardHeader>
-                <CardFooter className="flex flex-col mt-auto">
-                  <Button className=" w-full">
-                    <Link href={article.url} target="_blank">
-                      Continue Reading
-                    </Link>
-                  </Button>
-                  <div className="ml-auto flex items-center gap-2">
-                    <p className=" mt-5">
-                      by
-                      <span className="font-bold mx-1">
-                        {article.publisher.name}
-                      </span>
-                      -
-                      {article.published_date
-                        ? formatDistance(
-                            new Date(article.published_date),
-                            new Date(),
-                            {
-                              addSuffix: true,
-                            }
-                          )
-                        : ""}
-                    </p>
-                  </div>
-                </CardFooter>
-              </Card>
-            </div>
-          );
-        })
-      ) : (
+    <div className="relative flex items-center">
+      <ChevronLeft
+        onClick={slideLeft}
+        className="ml-5 opacity-50 cursor-pointer hover:opacity-100"
+      />
+      {isLoading ? (
         <>
           <div>
             <Skeleton className="w-[350px] h-[40px] rounded-md mx-10 my-2 mt-2" />
@@ -135,7 +99,66 @@ const RecentNews = () => {
             <Skeleton className="w-[300px] h-[20px] rounded-full mx-10 my-2" />
           </div>
         </>
+      ) : (
+        <div
+          id="slider"
+          className="w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide"
+        >
+          {news?.map((article) => {
+            return (
+              <Card
+                className="m-5 w-fit h-fit inline-block hover:bg-[#000] hover:bg-opacity-20 transition-all duration-300"
+                key={article.url}
+              >
+                <CardHeader>
+                  <CardTitle>
+                    <div className="flex flex-row items-center justify-between">
+                      <h1 className="text-2xl my-5 capitalize">
+                        <span className="bg-gradient-to-r from-black pb-1 to-black bg-[length:0px_6px] hover:bg-[length:100%_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-300 ">
+                          {article.title}
+                        </span>
+                      </h1>
+                    </div>
+                  </CardTitle>
+                  <CardDescription>
+                    <p className="text-base font-normal">
+                      Source : <span>{article.publisher.url}</span>
+                    </p>
+                  </CardDescription>
+                </CardHeader>
+                <CardFooter className="flex items-center gap-4 mt-auto">
+                  <Link href={article.url} target="_blank" className="w-full">
+                    <Button>Continue Reading</Button>
+                  </Link>
+                  <div className="ml-auto flex items-center gap-2">
+                    <p className=" ">
+                      by
+                      <span className="font-bold mx-1">
+                        {article.publisher.name}
+                      </span>
+                      -
+                      {article.published_date
+                        ? formatDistance(
+                            new Date(article.published_date),
+                            new Date(),
+                            {
+                              addSuffix: true,
+                            }
+                          )
+                        : ""}
+                    </p>
+                  </div>
+                </CardFooter>
+              </Card>
+            );
+          })}
+        </div>
       )}
+
+      <ChevronRight
+        onClick={slideRight}
+        className="mr-5 opacity-50 cursor-pointer hover:opacity-100"
+      />
     </div>
   );
 };

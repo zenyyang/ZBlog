@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Urbanist } from "next/font/google";
+import { Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ToastProvider } from "@/components/providers/ToastProvider";
 
-const font = Urbanist({ subsets: ["latin"] });
+const font = Playfair_Display({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "ZBlog",

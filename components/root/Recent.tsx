@@ -21,7 +21,7 @@ const Recent = async (props: Props) => {
   return (
     <div className="sm:grid gap-5 grid-cols-4 grid-rows-2 sm:h-[600px] m-5">
       <div
-        className="col-span-2 row-span-2 bg-contain bg-center bg-no-repeat relative flex items-end justify-start md:my-0 my-2"
+        className="col-span-2 row-span-2 bg-cover bg-center bg-no-repeat relative flex items-end justify-start md:my-0 my-2"
         style={{
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url(${blogs[0].mainImage})`,
         }}

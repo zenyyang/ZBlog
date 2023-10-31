@@ -1,8 +1,9 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import Navbar from "@/components/root/Navbar";
 import AllBlogs from "@/components/root/AllBlogs";
 import BlogFooter from "@/components/root/BlogFooter";
+import { Loader, RotateCw } from "lucide-react";
 
 type Props = {};
 
@@ -27,7 +28,13 @@ const BlogsPage = (props: Props) => {
           </div>
         </div>
         <div className="w-full h-full">
-          <AllBlogs />
+          <Suspense
+            fallback={
+              <RotateCw className=" animate-spin w-6 h-6 ml-[50%] m-5" />
+            }
+          >
+            <AllBlogs />
+          </Suspense>
         </div>
       </div>
       <BlogFooter />
