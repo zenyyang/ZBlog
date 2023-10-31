@@ -2,17 +2,7 @@ import React from "react";
 import prismadb from "@/lib/prisma";
 import { formatDistance } from "date-fns";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import ContentView from "./ContentView";
 import Link from "next/link";
 
 type Props = {};
@@ -25,63 +15,115 @@ const Recent = async (props: Props) => {
     include: {
       category: true,
     },
+    take: 4,
   });
-  return (
-    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
-      {blogs.map((blog) => {
-        const data = JSON.parse(blog?.content ?? "");
-        const firstElement: string = JSON.stringify(data[0]);
-        let secondElement: string = JSON.stringify(data[1]);
-        const finalData: string =
-          "[" + firstElement + "," + secondElement + "]";
 
-        return (
-          <Card className="m-10 relative" key={blog.id}>
-            <CardHeader>
-              <CardTitle>
-                <div className="flex flex-row items-center justify-between">
-                  <h1 className="text-2xl my-5 capitalize">
-                    <span className="bg-gradient-to-r from-black pb-2 to-black bg-[length:0px_6px] hover:bg-[length:100%_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-300 ">
-                      {blog?.title}
-                    </span>
-                  </h1>
-                  <div className="flex items-center gap-2">
-                    <p className="text-sm font-normal tracking-wide">Tag:</p>
-                    <Badge>{blog?.category.name}</Badge>
-                  </div>
-                </div>
-              </CardTitle>
-              <CardDescription>
-                <div
-                  style={{
-                    backgroundImage: `url(${blog?.mainImage})`,
-                  }}
-                  className="w-full h-96 bg-center bg-cover"
-                />
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="my-5 hidden md:block">
-              <ContentView content={finalData ?? ""} />
-            </CardContent>
-            <CardFooter className="flex flex-col md:absolute md:bottom-0 md:left-0 md:right-0 md:h-[80px]">
-              <Link href={`/${blog.id}`}>
-                <Button className=" w-full ">Continue Reading</Button>
-              </Link>
-              <div className="ml-auto flex items-center gap-2">
-                <p className=" mt-2">
-                  by
-                  <span className=" font-bold "> Monyvann </span> -{" "}
-                  {blog?.createdAt
-                    ? formatDistance(new Date(blog.createdAt), new Date(), {
-                        addSuffix: true,
-                      })
-                    : ""}
-                </p>
-              </div>
-            </CardFooter>
-          </Card>
-        );
-      })}
+  return (
+    <div className="sm:grid gap-5 grid-cols-4 grid-rows-2 sm:h-[600px] m-5">
+      <div
+        className="col-span-2 row-span-2 bg-contain bg-center bg-no-repeat relative flex items-end justify-start md:my-0 my-2"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url(${blogs[0].mainImage})`,
+        }}
+      >
+        <Link href={`/${blogs[0].id}`}>
+          <div className="absolute inset-0 bg-white opacity-0 hover:opacity-20 transition-opacity duration-300" />
+        </Link>
+        <div className="m-5 w-full">
+          <Badge variant={"secondary"} className=" rounded-none mb-2">
+            {blogs[0].category.name}
+          </Badge>
+          <div className="md:flex items-center w-full">
+            <p className="text-lg text-white">{blogs[0].title}</p>
+            <p className="text-sm text-white ml-auto">
+              by <span className="font-medium">Monyvann</span> -{" "}
+              {blogs[0].createdAt
+                ? formatDistance(new Date(blogs[0].createdAt), new Date(), {
+                    addSuffix: true,
+                  })
+                : ""}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        className=" relative flex items-end justify-start col-span-2 row-span-1 bg-cover bg-center bg-no-repeat md:my-0 my-2"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url(${blogs[1].mainImage})`,
+        }}
+      >
+        <Link href={`/${blogs[1].id}`}>
+          <div className="absolute inset-0 bg-white opacity-0 hover:opacity-20 transition-opacity duration-300" />
+        </Link>
+        <div className="m-5 w-full">
+          <Badge variant={"secondary"} className=" rounded-none mb-2">
+            {blogs[0].category.name}
+          </Badge>
+          <div className="md:flex items-center w-full">
+            <p className="text-lg text-white">{blogs[1].title}</p>
+            <p className="text-sm text-white ml-auto">
+              by <span className="font-medium">Monyvann</span> -{" "}
+              {blogs[1].createdAt
+                ? formatDistance(new Date(blogs[1].createdAt), new Date(), {
+                    addSuffix: true,
+                  })
+                : ""}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        className="relative flex items-end justify-start col-span-1 row-span-1 bg-cover bg-center bg-no-repeat md:my-0 my-2"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url(${blogs[2].mainImage})`,
+        }}
+      >
+        <Link href={`/${blogs[2].id}`}>
+          <div className="absolute inset-0 bg-white opacity-0 hover:opacity-20 transition-opacity duration-300" />
+        </Link>
+        <div className="m-5 w-full">
+          <Badge variant={"secondary"} className=" rounded-none mb-2">
+            {blogs[2].category.name}
+          </Badge>
+          <div className=" items-center w-full">
+            <p className="text-lg text-white">{blogs[2].title}</p>
+            <p className="text-sm text-white ml-auto">
+              by <span className="font-medium">Monyvann</span> -{" "}
+              {blogs[2].createdAt
+                ? formatDistance(new Date(blogs[2].createdAt), new Date(), {
+                    addSuffix: true,
+                  })
+                : ""}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        className="relative flex items-end justify-start col-span-1 row-span-1 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url(${blogs[3].mainImage})`,
+        }}
+      >
+        <Link href={`/${blogs[3].id}`}>
+          <div className="absolute inset-0 bg-white opacity-0 hover:opacity-20 transition-opacity duration-300" />
+        </Link>
+        <div className="m-5 w-full">
+          <Badge variant={"secondary"} className=" rounded-none mb-2">
+            {blogs[3].category.name}
+          </Badge>
+          <div className=" items-center w-full">
+            <p className="text-lg text-white">{blogs[3].title}</p>
+            <p className="text-sm text-white ml-auto">
+              by <span className="font-medium">Monyvann</span> -{" "}
+              {blogs[3].createdAt
+                ? formatDistance(new Date(blogs[3].createdAt), new Date(), {
+                    addSuffix: true,
+                  })
+                : ""}
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

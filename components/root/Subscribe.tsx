@@ -29,16 +29,22 @@ export default function Subscribe() {
       <div className="mx-5 mt-5 flex flex-col justify-center items-center">
         <p className="text-base font-medium tracking-widest">Social Media</p>
         <div className="flex items-center gap-20 mt-5">
-          <Link href="https://www.instagram.com/zenxai/">
+          <Link href="https://www.instagram.com/_monyvann_/" target="_blank">
             <Instagram className="w-7 h-7 text-red-300 " />
           </Link>
-          <Link href="https://www.facebook.com/zenxai">
+          <Link href="https://twitter.com/zennyangg" target="_blank">
             <Twitter className="w-7 h-7  text-red-300  " />
           </Link>
-          <Link href="https://www.linkedin.com/in/zenxai/">
+          <Link
+            href="https://www.linkedin.com/in/monyvann-men-65b7a5260/"
+            target="_blank"
+          >
             <Linkedin className="w-7 h-7 text-red-300 " />
           </Link>
         </div>
+      </div>
+      <div className="flex items-center justify-center mt-10 text-muted-foreground">
+        <p> &copy; 2023 ZBlog. All rights reserved</p>
       </div>
     </div>
   );

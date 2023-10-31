@@ -34,7 +34,7 @@ model Image {
 model Blog {
   id         String   @id @default(uuid())
   title      String
-  content    String?  @db.VarChar(10000) // Increased the length of the column to 10000
+  content    String?  @db.LongText() // Increased the length of the column to 10000
   mainImage  String?
   Images     Image[]
   categoryId String

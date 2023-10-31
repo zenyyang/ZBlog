@@ -35,8 +35,8 @@ export default function Home() {
         </p>
         <Recent />
       </div>
-      <div className="mt-10">
-        <p className="text-4xl font-bold text-center">Recent News</p>
+      <div className="mt-32">
+        <p className="text-4xl font-bold text-center">Other News</p>
         <RecentNews />
       </div>
       <div>

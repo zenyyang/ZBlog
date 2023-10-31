@@ -22,6 +22,12 @@ type Props = {
 };
 
 const BlogsByCategory = ({ blogs }: Props) => {
+  if (blogs.length === 0)
+    return (
+      <div className="w-full h-[200px] items-center justify-center flex">
+        No Blog Found.
+      </div>
+    );
   return (
     <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
       {blogs.map((blog) => {

@@ -43,9 +43,6 @@ const Latest = async (props: Props) => {
                 Lastest Blog -{" "}
               </p>
               <div className="flex items-center gap-2">
-                <p className="md:text-lg text-sm font-normal tracking-wide">
-                  Tag:
-                </p>
                 <Badge>{latestBlog?.category.name}</Badge>
               </div>
             </div>
@@ -60,7 +57,7 @@ const Latest = async (props: Props) => {
               style={{
                 backgroundImage: `url(${latestBlog?.mainImage})`,
               }}
-              className="w-full h-96 bg-cover bg-center"
+              className="w-full h-96 bg-cover bg-start bg-no-repeat"
             />
           </CardDescription>
         </CardHeader>

@@ -19,6 +19,7 @@ const CategoryPage = async ({ params }: { params: { categoryId: string } }) => {
       category: true,
     },
   });
+
   return (
     <div>
       <div className="w-full h-full ">

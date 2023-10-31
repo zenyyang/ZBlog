@@ -47,7 +47,6 @@ const AllBlogs = async (props: Props) => {
                     </span>
                   </h1>
                   <div className="flex items-center gap-2">
-                    <p className="text-sm font-normal tracking-wide">Tag:</p>
                     <Badge>{blog?.category.name}</Badge>
                   </div>
                 </div>
@@ -55,7 +54,7 @@ const AllBlogs = async (props: Props) => {
               <CardDescription>
                 <div
                   style={{
-                    backgroundImage: `url(${blog?.mainImage})`,
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url(${blog?.mainImage})`,
                   }}
                   className="w-full h-96 bg-center bg-cover"
                 />

@@ -34,7 +34,7 @@ const MainNav = ({ data }: Props) => {
           key={route.href}
           href={route.href}
           className={cn(
-            "text-base font-light transition-colors hover:text-inherit z-20 ",
+            "text-base font-light transition-colors hover:text-inherit z-20 md:block hidden",
             route.active ? " text-inherit" : "text-white"
           )}
         >

@@ -37,7 +37,7 @@ const BlogPage = async ({ params }: { params: { blogId: string } }) => {
       <Navbar />
       <div className="relative w-full h-[400px] bg-gradient-to-r from-purple-400 to-blue-800 items-center justify-center flex flex-col">
         <div className="flex flex-col gap-y-1 items-center">
-          <h1 className="font-extrabold text-6xl text-white font-serif">
+          <h1 className="font-extrabold md:text-6xl text-3xl text-white font-serif">
             {blog.title}
           </h1>
           <h3 className="mt-3 text-white">
@@ -45,27 +45,30 @@ const BlogPage = async ({ params }: { params: { blogId: string } }) => {
           </h3>
         </div>
         <div className="w-full h-[20%] absolute bottom-0 flex items-center">
-          <div className="flex items-center mx-10 gap-10">
+          <div className="flex items-center mx-10 md:gap-10 gap-5">
             <Link
-              href="https://www.instagram.com/zenxai/"
+              href="https://www.instagram.com/_monyvann_/"
+              target="_blank"
               className="text-transparent"
             >
-              <Instagram className="w-8 h-8 text-white" />
+              <Instagram className="md:w-8 md:h-8 w-5 h-5 text-white" />
             </Link>
             <Link
               className="text-transparent"
-              href="https://www.facebook.com/zenxai"
+              href="https://twitter.com/zennyangg"
+              target="_blank"
             >
-              <Twitter className="w-8 h-8  text-white" />
+              <Twitter className="md:w-8 md:h-8 w-5 h-5  text-white" />
             </Link>
             <Link
-              href="https://www.linkedin.com/in/zenxai/ "
+              href="https://www.linkedin.com/in/monyvann-men-65b7a5260/"
+              target="_blank"
               className="text-transparent"
             >
-              <Linkedin className="w-8 h-8 text-white" />
+              <Linkedin className="md:w-8 md:h-8 w-5 h-5 text-white" />
             </Link>
           </div>
-          <div className="flex items-center gap-2 ml-auto mx-10">
+          <div className="flex items-center gap-2 ml-auto mx-10 md:text-base text-sm">
             <p className=" text-white">
               by
               <span className="font-bold "> Monyvann </span> -{" "}
@@ -78,7 +81,7 @@ const BlogPage = async ({ params }: { params: { blogId: string } }) => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-4 m-5 gap-5">
+      <div className="md:grid grid-cols-4 m-5 gap-5">
         <div className=" col-span-1 ">
           <p className="text-muted-foreground text-xs">
             Welcome to ZBLOG! We're delighted to have you here. Enjoy reading
@@ -98,7 +101,7 @@ const BlogPage = async ({ params }: { params: { blogId: string } }) => {
             ))}
           </div>
         </div>
-        <div className="col-span-3">
+        <div className="col-span-3 md:mt-0 mt-10">
           <div className="flex items-center gap-2">
             <Link href="/" className="hover:underline font-medium">
               Home{" "}
