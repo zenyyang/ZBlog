@@ -1,21 +1,11 @@
 import Footer from "@/components/root/Footer";
-import Latest from "@/components/root/Latest";
 import Navbar from "@/components/root/Navbar";
-import Recent from "@/components/root/Recent";
-import RecentNews from "@/components/root/RecentNews";
+const Latest = dynamic(() => import("@/components/root/Latest"));
+const Recent = dynamic(() => import("@/components/root/Recent"));
 import { Separator } from "@/components/ui/separator";
-import prismadb from "@/lib/prisma";
+import dynamic from "next/dynamic";
 
-export default async function Home() {
-  const blogs = await prismadb.blog.findMany({
-    orderBy: {
-      updatedAt: "desc",
-    },
-    include: {
-      category: true,
-    },
-  });
-
+export default function Home() {
   return (
     <div>
       <div className=" w-full h-screen z-10">
@@ -35,7 +25,7 @@ export default async function Home() {
           </p>
         </div>
         <div className="relative w-full h-fit -mt-[250px] justify-center items-center ">
-          <Latest blogs={blogs} />
+          <Latest />
         </div>
       </div>
       <div className="h-screen" />
@@ -43,7 +33,7 @@ export default async function Home() {
         <p className="text-3xl font-medium md:mb-10 lg:mb-0 mx-5 ">
           Recent Blogs
         </p>
-        <Recent blogs={blogs} />
+        <Recent />
       </div>
       {/* <div className="mt-32 mb-20">
         <p className="text-3xl font-medium mx-5">Other News</p>

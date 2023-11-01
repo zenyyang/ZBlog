@@ -16,14 +16,18 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import ContentView from "./ContentView";
-import { Blog } from "@prisma/client";
 
-type Props = {
-  blogs: (Blog & { category?: { name: string } })[];
-};
+type Props = {};
 
-const Latest = async ({ blogs }: Props) => {
-  const latestBlog = blogs[0];
+const Latest = async (props: Props) => {
+  const latestBlog = await prismadb.blog.findFirst({
+    orderBy: {
+      createdAt: "desc",
+    },
+    include: {
+      category: true,
+    },
+  });
   const data = JSON.parse(latestBlog?.content ?? "");
   const firstElement: string = JSON.stringify(data[0]);
   const secondElement: string = JSON.stringify(data[1]);
@@ -39,7 +43,7 @@ const Latest = async ({ blogs }: Props) => {
                 Lastest Blog -{" "}
               </p>
               <div className="flex items-center gap-2">
-                <Badge>{latestBlog?.category?.name}</Badge>
+                <Badge>{latestBlog?.category.name}</Badge>
               </div>
             </div>
             <h1 className="md:text-5xl text-2xl my-5 capitalize">

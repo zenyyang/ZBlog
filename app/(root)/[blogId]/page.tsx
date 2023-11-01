@@ -1,37 +1,33 @@
-import prismadb from "@/lib/prisma";
-import { formatDistance } from "date-fns";
-import React, { Suspense } from "react";
-import { format } from "date-fns";
+import React from "react";
 import Link from "next/link";
+const ContentView = dynamic(
+  () => import("@/components/root/ContentViewAllBlogs")
+);
+const TableContent = dynamic(() => import("./components/TableContent"));
+const GetContent = dynamic(() => import("./components/GetContent"));
+const GetTitle = dynamic(() => import("./components/GetTitle"));
+const GetUpdate = dynamic(() => import("./components/GetUpdate"));
 
 import {
-  CornerDownRight,
   Instagram,
   Linkedin,
   Loader2Icon,
-  Menu,
   MoveRight,
   Twitter,
 } from "lucide-react";
 import Navbar from "@/components/root/Navbar";
-import ContentView from "@/components/root/ContentView";
 import BlogFooter from "@/components/root/BlogFooter";
-import TableContent from "./components/TableContent";
-import GetContent from "./components/GetContent";
-import GetTitle from "./components/GetTitle";
-import GetUpdate from "./components/GetUpdate";
+import dynamic from "next/dynamic";
 
 const BlogPage = ({ params }: { params: { blogId: string } }) => {
   return (
     <div className="w-full h-full ">
       <Navbar />
       <div className="relative w-full h-[400px] bg-gradient-to-r from-purple-400 to-blue-800 items-center justify-center flex flex-col">
-        <Suspense fallback={<div className="text-white">Loading...</div>}>
-          <div className="flex flex-col gap-y-1 items-center">
-            <GetTitle blogId={params.blogId} />
-            <GetUpdate blogId={params.blogId} />
-          </div>
-        </Suspense>
+        <div className="flex flex-col gap-y-1 items-center">
+          <GetTitle blogId={params.blogId} />
+          <GetUpdate blogId={params.blogId} />
+        </div>
         <div className="w-full h-[20%] absolute bottom-0 flex items-center">
           <div className="flex items-center mx-10 md:gap-10 gap-5">
             <Link
@@ -72,15 +68,7 @@ const BlogPage = ({ params }: { params: { blogId: string } }) => {
             back, relax, and dive into a world of insightful content. Happy
             reading!
           </p>
-          <Suspense
-            fallback={
-              <div className="flex items-center justify-center w-full h-full">
-                <Loader2Icon className=" animate-spin" />
-              </div>
-            }
-          >
-            <TableContent blogId={params.blogId} />
-          </Suspense>
+          <TableContent blogId={params.blogId} />
         </div>
         <div className="col-span-3 md:mt-0 mt-10">
           <div className="flex items-center gap-2">
@@ -94,15 +82,7 @@ const BlogPage = ({ params }: { params: { blogId: string } }) => {
             <MoveRight className="w-4 h-4" />
           </div>
           <div className="mt-10">
-            <Suspense
-              fallback={
-                <div className="flex items-center justify-center w-full h-full">
-                  <Loader2Icon className=" animate-spin" />
-                </div>
-              }
-            >
-              <GetContent blogId={params.blogId} />
-            </Suspense>
+            <GetContent blogId={params.blogId} />
           </div>
         </div>
       </div>
