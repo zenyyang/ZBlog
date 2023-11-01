@@ -21,26 +21,7 @@ import GetContent from "./components/GetContent";
 import GetTitle from "./components/GetTitle";
 import GetUpdate from "./components/GetUpdate";
 
-const BlogPage = async ({ params }: { params: { blogId: string } }) => {
-  const blog = await prismadb.blog.findUnique({
-    where: {
-      id: params.blogId,
-    },
-  });
-
-  if (!blog) {
-    return <div>Blog not found</div>;
-  }
-
-  const content = JSON.parse(blog.content ?? "");
-  const headings = content.filter((item: any) => item.type === "heading");
-  const headingId = headings.map((item: any) => item.id);
-  const headingsLevel = headings.map((item: any) => item.props.level);
-  const headingContents = headings.map((item: any) => item.content);
-  const heading = headingContents.map((item: any) =>
-    item[0].text.replace(/:$/, "")
-  );
-
+const BlogPage = ({ params }: { params: { blogId: string } }) => {
   return (
     <div className="w-full h-full ">
       <Navbar />
@@ -110,7 +91,7 @@ const BlogPage = async ({ params }: { params: { blogId: string } }) => {
             <Link href="/blogs" className="hover:underline font-medium">
               Blog
             </Link>
-            <MoveRight className="w-4 h-4" /> {blog.title}
+            <MoveRight className="w-4 h-4" />
           </div>
           <div className="mt-10">
             <Suspense
