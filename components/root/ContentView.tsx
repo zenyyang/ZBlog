@@ -4,6 +4,7 @@ import { BlockNoteEditor, PartialBlock } from "@blocknote/core";
 import { BlockNoteView, useBlockNote } from "@blocknote/react";
 import "@blocknote/core/style.css";
 import { useTheme } from "next-themes";
+import { useEffect } from "react";
 
 type Props = {
   content?: string;
@@ -17,6 +18,7 @@ function ContentView({ content }: Props) {
       ? (JSON.parse(content) as PartialBlock[])
       : undefined,
   });
+
   return (
     <div>
       <BlockNoteView

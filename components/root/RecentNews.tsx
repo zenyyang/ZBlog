@@ -32,26 +32,30 @@ const RecentNews = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const options = {
-        method: "GET",
-        url: "https://news-api14.p.rapidapi.com/search",
-        params: {
-          q: "nextjs reactjs web-development",
-          country: "us",
-          language: "en",
-          pageSize: "6",
-          publisher: "",
-        },
-        headers: {
-          "X-RapidAPI-Key":
-            "2e6193a9e5msh53681c210b5f02ap18eb7ejsn8989c4bbc0d9",
-          "X-RapidAPI-Host": "news-api14.p.rapidapi.com",
-        },
-      };
+      try {
+        const options = {
+          method: "GET",
+          url: "https://news-api14.p.rapidapi.com/search",
+          params: {
+            q: "nextjs reactjs web-development",
+            country: "us",
+            language: "en",
+            pageSize: "6",
+            publisher: "",
+          },
+          headers: {
+            "X-RapidAPI-Key":
+              "2e6193a9e5msh53681c210b5f02ap18eb7ejsn8989c4bbc0d9",
+            "X-RapidAPI-Host": "news-api14.p.rapidapi.com",
+          },
+        };
 
-      const response = await axios.request(options);
-      setNews(response.data.articles);
-      setIsLoading(false);
+        const response = await axios.request(options);
+        setNews(response.data.articles);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
     }
     fetchData();
   }, []);

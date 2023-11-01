@@ -4,13 +4,12 @@ import React from "react";
 import Logo from "@/public/logo.png";
 import Link from "next/link";
 import prismadb from "@/lib/prisma";
-import { Instagram, Linkedin, Twitter } from "lucide-react";
 import Subscribe from "./Subscribe";
 
 type Props = {};
 
 const Footer = async (props: Props) => {
-  const categories = await prismadb.category.findMany();
+  const categories = await prismadb.category.findMany({ take: 5 });
 
   return (
     <div className="p-5 bg-gray-100 h-fit dark:bg-[#232133]">
