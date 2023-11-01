@@ -18,6 +18,8 @@ import ContentView from "@/components/root/ContentView";
 import BlogFooter from "@/components/root/BlogFooter";
 import TableContent from "./components/TableContent";
 import GetContent from "./components/GetContent";
+import GetTitle from "./components/GetTitle";
+import GetUpdate from "./components/GetUpdate";
 
 const BlogPage = async ({ params }: { params: { blogId: string } }) => {
   const blog = await prismadb.blog.findUnique({
@@ -43,14 +45,12 @@ const BlogPage = async ({ params }: { params: { blogId: string } }) => {
     <div className="w-full h-full ">
       <Navbar />
       <div className="relative w-full h-[400px] bg-gradient-to-r from-purple-400 to-blue-800 items-center justify-center flex flex-col">
-        <div className="flex flex-col gap-y-1 items-center">
-          <h1 className="font-extrabold md:text-6xl text-3xl text-white font-serif">
-            {blog.title}
-          </h1>
-          <h3 className="mt-3 text-white">
-            Updated on {format(new Date(blog.createdAt), "MMM do, yyyy")}
-          </h3>
-        </div>
+        <Suspense fallback={<div className="text-white">Loading...</div>}>
+          <div className="flex flex-col gap-y-1 items-center">
+            <GetTitle blogId={params.blogId} />
+            <GetUpdate blogId={params.blogId} />
+          </div>
+        </Suspense>
         <div className="w-full h-[20%] absolute bottom-0 flex items-center">
           <div className="flex items-center mx-10 md:gap-10 gap-5">
             <Link
@@ -78,12 +78,7 @@ const BlogPage = async ({ params }: { params: { blogId: string } }) => {
           <div className="flex items-center gap-2 ml-auto mx-10 md:text-base text-sm">
             <p className=" text-white">
               by
-              <span className="font-bold "> Monyvann </span> -{" "}
-              {blog?.createdAt
-                ? formatDistance(new Date(blog.createdAt), new Date(), {
-                    addSuffix: true,
-                  })
-                : ""}
+              <span className="font-bold "> Monyvann </span>
             </p>
           </div>
         </div>

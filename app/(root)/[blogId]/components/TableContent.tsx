@@ -9,7 +9,6 @@ type Props = {
 };
 
 const TableContent = async ({ blogId }: Props) => {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
   const blog = await prismadb.blog.findUnique({
     where: {
       id: blogId,
