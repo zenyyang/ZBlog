@@ -1,6 +1,6 @@
 import prismadb from "@/lib/prisma";
 import { formatDistance } from "date-fns";
-import React from "react";
+import React, { Suspense } from "react";
 import { format } from "date-fns";
 import Link from "next/link";
 
@@ -8,6 +8,7 @@ import {
   CornerDownRight,
   Instagram,
   Linkedin,
+  Loader2Icon,
   Menu,
   MoveRight,
   Twitter,
@@ -15,6 +16,7 @@ import {
 import Navbar from "@/components/root/Navbar";
 import ContentView from "@/components/root/ContentView";
 import BlogFooter from "@/components/root/BlogFooter";
+import TableContent from "./components/TableContent";
 
 const BlogPage = async ({ params }: { params: { blogId: string } }) => {
   const blog = await prismadb.blog.findUnique({
@@ -93,45 +95,29 @@ const BlogPage = async ({ params }: { params: { blogId: string } }) => {
             back, relax, and dive into a world of insightful content. Happy
             reading!
           </p>
-          <h1 className="text-2xl mt-10 flex items-center gap-2">
-            <Menu />
-            Table of Content
-          </h1>
-          <div className="mt-3 ml-2">
-            {heading.map((item: any) => (
-              <div className="flex items-center gap-2 text-base">
-                {headingsLevel[heading.indexOf(item)] === 1 && (
-                  <>
-                    <CornerDownRight className="w-4 h-4 my-2" /> {item}
-                  </>
-                )}
-                {headingsLevel[heading.indexOf(item)] === 2 && (
-                  <>
-                    <CornerDownRight className="ml-3 w-4 h-4 my-2" /> {item}
-                  </>
-                )}
-                {headingsLevel[heading.indexOf(item)] === 3 && (
-                  <>
-                    <CornerDownRight className="ml-5 w-4 h-4 my-2" /> {item}
-                  </>
-                )}
-              </div>
-            ))}
-          </div>
+          <TableContent blog={blog} />
         </div>
         <div className="col-span-3 md:mt-0 mt-10">
           <div className="flex items-center gap-2">
             <Link href="/" className="hover:underline font-medium">
-              Home{" "}
+              Home
             </Link>
             <MoveRight className="w-4 h-4" />{" "}
             <Link href="/blogs" className="hover:underline font-medium">
-              Blog{" "}
+              Blog
             </Link>
             <MoveRight className="w-4 h-4" /> {blog.title}
           </div>
           <div className="mt-10">
-            <ContentView content={blog.content ?? ""} />
+            <Suspense
+              fallback={
+                <div className="flex items-center justify-center w-full h-full">
+                  <Loader2Icon className=" animate-spin" />
+                </div>
+              }
+            >
+              <ContentView content={blog.content ?? ""} />
+            </Suspense>
           </div>
         </div>
       </div>

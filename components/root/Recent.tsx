@@ -4,19 +4,14 @@ import { formatDistance } from "date-fns";
 
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import { Blog } from "@prisma/client";
 
-type Props = {};
+type Props = {
+  blogs: (Blog & { category?: { name: string } })[];
+};
 
-const Recent = async (props: Props) => {
-  const blogs = await prismadb.blog.findMany({
-    orderBy: {
-      updatedAt: "desc",
-    },
-    include: {
-      category: true,
-    },
-    take: 4,
-  });
+const Recent = async ({ blogs }: Props) => {
+  blogs = blogs.slice(0, 4);
 
   return (
     <div className="sm:grid gap-5 grid-cols-4 grid-rows-2 sm:h-[600px] m-5">
@@ -31,7 +26,7 @@ const Recent = async (props: Props) => {
         </Link>
         <div className="m-5 w-full">
           <Badge variant={"secondary"} className=" rounded-none mb-2">
-            {blogs[0].category.name}
+            {blogs[0].category?.name}
           </Badge>
           <div className="md:flex items-center w-full">
             <p className="text-lg text-white">{blogs[0].title}</p>
@@ -57,7 +52,7 @@ const Recent = async (props: Props) => {
         </Link>
         <div className="m-5 w-full">
           <Badge variant={"secondary"} className=" rounded-none mb-2">
-            {blogs[0].category.name}
+            {blogs[0].category?.name}
           </Badge>
           <div className="md:flex items-center w-full">
             <p className="text-lg text-white">{blogs[1].title}</p>
@@ -83,7 +78,7 @@ const Recent = async (props: Props) => {
         </Link>
         <div className="m-5 w-full">
           <Badge variant={"secondary"} className=" rounded-none mb-2">
-            {blogs[2].category.name}
+            {blogs[2].category?.name}
           </Badge>
           <div className=" items-center w-full">
             <p className="text-lg text-white">{blogs[2].title}</p>
@@ -109,7 +104,7 @@ const Recent = async (props: Props) => {
         </Link>
         <div className="m-5 w-full">
           <Badge variant={"secondary"} className=" rounded-none mb-2">
-            {blogs[3].category.name}
+            {blogs[3].category?.name}
           </Badge>
           <div className=" items-center w-full">
             <p className="text-lg text-white">{blogs[3].title}</p>
