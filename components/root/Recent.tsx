@@ -10,7 +10,7 @@ type Props = {};
 const Recent = async (props: Props) => {
   const blogs = await prismadb.blog.findMany({
     orderBy: {
-      createdAt: "desc",
+      updatedAt: "desc",
     },
     include: {
       category: true,

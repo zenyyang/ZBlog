@@ -32,15 +32,15 @@ model Image {
 }
 
 model Blog {
-  id         String     @id @default(uuid())
+  id         String   @id @default(uuid())
   title      String
-  content    String?    @db.LongText() // Increased the length of the column to 10000
+  content    String?  @db.LongText() // Increased the length of the column to 10000
   mainImage  String?
   Images     Image[]
   categoryId String
-  category   Category[]
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
+  category   Category @relation(fields: [categoryId], references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   @@index([categoryId])
 }
