@@ -17,6 +17,7 @@ import Navbar from "@/components/root/Navbar";
 import ContentView from "@/components/root/ContentView";
 import BlogFooter from "@/components/root/BlogFooter";
 import TableContent from "./components/TableContent";
+import GetContent from "./components/GetContent";
 
 const BlogPage = async ({ params }: { params: { blogId: string } }) => {
   const blog = await prismadb.blog.findUnique({
@@ -57,21 +58,21 @@ const BlogPage = async ({ params }: { params: { blogId: string } }) => {
               target="_blank"
               className="text-transparent"
             >
-              <Instagram className="md:w-8 md:h-8 w-5 h-5 text-white" />
+              <Instagram className="md:w-5 md:h-5 w-5 h-5 text-white" />
             </Link>
             <Link
               className="text-transparent"
               href="https://twitter.com/zennyangg"
               target="_blank"
             >
-              <Twitter className="md:w-8 md:h-8 w-5 h-5  text-white" />
+              <Twitter className="md:w-5 md:h-5 w-5 h-5  text-white" />
             </Link>
             <Link
               href="https://www.linkedin.com/in/monyvann-men-65b7a5260/"
               target="_blank"
               className="text-transparent"
             >
-              <Linkedin className="md:w-8 md:h-8 w-5 h-5 text-white" />
+              <Linkedin className="md:w-5 md:h-5 w-5 h-5 text-white" />
             </Link>
           </div>
           <div className="flex items-center gap-2 ml-auto mx-10 md:text-base text-sm">
@@ -95,7 +96,15 @@ const BlogPage = async ({ params }: { params: { blogId: string } }) => {
             back, relax, and dive into a world of insightful content. Happy
             reading!
           </p>
-          <TableContent blog={blog} />
+          <Suspense
+            fallback={
+              <div className="flex items-center justify-center w-full h-full">
+                <Loader2Icon className=" animate-spin" />
+              </div>
+            }
+          >
+            <TableContent blogId={params.blogId} />
+          </Suspense>
         </div>
         <div className="col-span-3 md:mt-0 mt-10">
           <div className="flex items-center gap-2">
@@ -116,7 +125,7 @@ const BlogPage = async ({ params }: { params: { blogId: string } }) => {
                 </div>
               }
             >
-              <ContentView content={blog.content ?? ""} />
+              <GetContent blogId={params.blogId} />
             </Suspense>
           </div>
         </div>

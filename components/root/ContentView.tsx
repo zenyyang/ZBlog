@@ -9,7 +9,7 @@ type Props = {
   content?: string;
 };
 
-function ContentView({ content }: Props) {
+const ContentView = ({ content }: Props) => {
   const { resolvedTheme } = useTheme();
   const editor: BlockNoteEditor = useBlockNote({
     editable: false,
@@ -27,6 +27,6 @@ function ContentView({ content }: Props) {
       />
     </div>
   );
-}
+};
 
 export default ContentView;

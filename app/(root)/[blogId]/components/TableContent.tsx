@@ -2,13 +2,21 @@ import { Blog } from "@prisma/client";
 import React from "react";
 
 import { CornerDownRight, Menu } from "lucide-react";
+import prismadb from "@/lib/prisma";
 
 type Props = {
-  blog: Blog;
+  blogId: string;
 };
 
-const TableContent = ({ blog }: Props) => {
-  const content = JSON.parse(blog.content ?? "");
+const TableContent = async ({ blogId }: Props) => {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  const blog = await prismadb.blog.findUnique({
+    where: {
+      id: blogId,
+    },
+  });
+
+  const content = JSON.parse(blog?.content ?? "");
   const headings = content.filter((item: any) => item.type === "heading");
   const headingId = headings.map((item: any) => item.id);
   const headingsLevel = headings.map((item: any) => item.props.level);
