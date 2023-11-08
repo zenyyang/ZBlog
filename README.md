@@ -1,24 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ZBlog
+[ZBlog](https://virlia-blog.vercel.app/) your gateway to the ever-evolving tech universe! Immerse yourself in a world where innovation meets insight. ZBlog is your go-to destination for in-depth explorations of cutting-edge technologies such as React and Next.js.
 
-## Getting Started
+## Key Features
+- Landing Page Excellence - The ZBlog landing page is designed for readers seeking immersive content experiences. It offers an intuitive interface, allowing visitors to effortlessly navigate through an extensive collection of blogs, categorized by topics and themes.
+- Owner Dashboard - ZBlog provides blog owners with a powerful dashboard. Owners can effortlessly add new blogs, create categories, and gain insights through an overview section. The dashboard acts as a control center, ensuring smooth management of content.
+- Effortless Blog Creation - ZBlog revolutionizes the blog creation process with a Notion-like text editor. Users can craft compelling content using a simplified editor, akin to the popular Notion platform. This user-friendly approach empowers creators to focus on their ideas, making the content creation process seamless and enjoyable.
+- Dynamic Category Management - Owners can categorize blogs effectively, enhancing user experience and content organization. Categories can be easily added, edited, or removed, ensuring that readers can explore content tailored to their interests.
+- Comprehensive Overview - The dashboard offers owners a comprehensive overview of their blog's performance. This includes metrics such as reader engagement, popular categories, and trending topics. These insights empower owners to make data-driven decisions to enhance their blog's reach and impact.
 
-First, run the development server:
+## Stack
+- Next.js 
+- Typescript
+- Tailwind 
+- Prisma
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Credit
+You are free to share and distribute the work in any medium or format, provided that you give appropriate credit, do not use it for commercial purposes, and do not make any modifications.
 
 ## Learn More
 
